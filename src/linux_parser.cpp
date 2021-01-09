@@ -93,9 +93,6 @@ float LinuxParser::MemoryUtilization() {
         }
       }
     }
-    std::cout<<"memTotal: "<<memTotal<<"\n";
-    std::cout<<"memFree: "<<memFree<<"\n";
-    std::cout<<"buffers: "<<buffers<<"\n";
     return (100.0 * (1 - (memFree / (memTotal - buffers))));
   }
   return 0;
