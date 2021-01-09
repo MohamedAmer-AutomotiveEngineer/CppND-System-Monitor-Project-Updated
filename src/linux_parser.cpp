@@ -74,6 +74,7 @@ float LinuxParser::MemoryUtilization() { return 0.0; }
 long LinuxParser::UpTime() {
   string upTime, idleTime;
   string line;
+  long int up_Time = 0;
   std::ifstream stream(kProcDirectory + kUptimeFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
@@ -81,7 +82,9 @@ long LinuxParser::UpTime() {
     linestream >> upTime >> idleTime;
   }
   std::cout <<"uptime================"<<upTime<<"\n";
-  return stol(upTime, nullptr, 10);
+  up_Time = stol(upTime, nullptr, 10);
+  std::cout <<"uptime================"<<up_Time<<"\n";
+  return up_Time;
   }
 
 // TODO: Read and return the number of jiffies for the system
