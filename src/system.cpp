@@ -12,7 +12,7 @@ using std::set;
 using std::size_t;
 using std::string;
 using std::vector;
-using namespace LinuxParser;
+//using namespace LinuxParser;
 
 // TODO: Return the system's CPU
 Processor& System::Cpu() 
