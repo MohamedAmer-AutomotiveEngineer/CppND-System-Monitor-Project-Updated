@@ -72,7 +72,7 @@ float LinuxParser::MemoryUtilization() {
   string line;
   string key;
   string value;
-  long int memTotal, memFree, buffers;
+  float memTotal, memFree, buffers;
   std::ifstream filestream(kProcDirectory + kMeminfoFilename);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
@@ -93,7 +93,7 @@ float LinuxParser::MemoryUtilization() {
         }
       }
     } //memFree / (memTotal - buffers)
-    return (1.000 - (float)(memFree / (memTotal - buffers)));
+    return (1.000 - (memFree / (memTotal - buffers)));
   }
   return 0;
 }
