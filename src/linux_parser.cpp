@@ -80,7 +80,7 @@ long LinuxParser::UpTime() {
     std::istringstream linestream(line);
     linestream >> upTime >> idleTime;
   }
-  std::cout <<"uptime================\n";
+  std::cout <<"uptime================"<<upTime<<"\n";
   return stol(upTime);
   }
 
