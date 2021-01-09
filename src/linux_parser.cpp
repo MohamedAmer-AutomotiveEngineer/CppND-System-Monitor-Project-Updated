@@ -81,9 +81,8 @@ long LinuxParser::UpTime() {
     std::istringstream linestream(line);
     linestream >> upTime >> idleTime;
   }
-  std::cout <<"uptime================"<<upTime<<"\n";
+  //std::cout <<"uptime================"<<upTime<<"\n";
   up_Time = stol(upTime, nullptr, 10);
-  std::cout <<"uptime================"<<up_Time<<"\n";
   return up_Time;
   }
 
