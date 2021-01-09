@@ -84,7 +84,7 @@ float LinuxParser::MemoryUtilization() {
         else if (key == "MemFree:") {
           memFree =  stol(value, nullptr, 10);
         }
-        else if (key == "Buffers::") {
+        else if (key == "Buffers:") {
           buffers =  stol(value, nullptr, 10);
         }
         else
