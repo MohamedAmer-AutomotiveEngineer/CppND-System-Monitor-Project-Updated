@@ -93,7 +93,7 @@ float LinuxParser::MemoryUtilization() {
         }
       }
     }
-    return (100.0 * (1 - (memFree / (memTotal - buffers))));
+    return (100.0 * (1.0 - (float)(memFree / (memTotal - buffers))));
   }
   return 0;
 }
