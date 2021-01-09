@@ -79,8 +79,9 @@ long LinuxParser::UpTime() {
     std::istringstream linestream(line);
     linestream >> upTime >> idleTime;
   }
+  std::cout <<"uptime================\n";
   return stol(upTime);
-}
+  }
 
 // TODO: Read and return the number of jiffies for the system
 long LinuxParser::Jiffies() { return 0; }
