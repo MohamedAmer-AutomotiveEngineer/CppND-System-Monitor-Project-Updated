@@ -158,7 +158,7 @@ vector<string> LinuxParser::CpuUtilization() {
       PrevIdle = Idle;
       PrevNonIdle = NonIdle;
       PrevTotal = Total;
-      return vector<string>std::to_string(CPU_Percentage);
+      return std::to_string(CPU_Percentage);
     }
   }
   return 0;
