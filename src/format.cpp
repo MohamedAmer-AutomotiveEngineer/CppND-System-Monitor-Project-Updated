@@ -9,9 +9,9 @@ using std::string;
 // OUTPUT: HH:MM:SS
 // REMOVE: [[maybe_unused]] once you define the function
 string Format::ElapsedTime(long seconds) {
-    unsigned char hour, minutes;
+    unsigned char hour = 0, minute = 0, second = 0;
     hour = seconds / 3600;
-    minutes = (seconds - 3600*hour)/60;
-    seconds = (seconds - (3600*hour) - (60*minutes));
-    return (std::to_string(hour) + ":" + std::to_string(minutes) + ":" + std::to_string(seconds));
+    minute = (seconds - 3600*hour)/60;
+    second = (seconds - (3600*hour) - (60*minute));
+    return (std::to_string(hour) + ":" + std::to_string(minute) + ":" + std::to_string(second));
 }

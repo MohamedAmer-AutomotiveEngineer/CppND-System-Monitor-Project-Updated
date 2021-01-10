@@ -151,7 +151,8 @@ float LinuxParser::CpuUtilization() {
       guestTime      = stol(guestTime_s, nullptr, 10);
       guest_niceTime = stol(guest_niceTime_s, nullptr, 10);
 
-      Idle = idleTime + iowaitTime;
+      /* following formulas per htop */
+      Idle = idleTime + iowaitTime;                                                    
       NonIdle = userTime + niceTime + systemTime + irqTime + softirqTime + stealTime;
       Total = Idle + NonIdle;
       totald = Total - PrevTotal;
