@@ -134,7 +134,7 @@ vector<string> LinuxParser::CpuUtilization() {
   static float PrevIdle = 0.0f, PrevNonIdle = 0.0f, PrevTotal = 0.0f;
   std::ifstream filestream(kProcDirectory + kStatFilename);
   if (filestream.is_open()) {
-    std::getline(filestream, line)
+    std::getline(filestream, line);
     std::istringstream linestream(line);
     linestream >> key >> userTime_s >> niceTime_s >> systemTime_s >> idleTime_s >> iowaitTime_s >> irqTime_s >> softirqTime_s >> stealTime_s >> guestTime_s >> guest_niceTime_s;
     if (key == "cpu") {
