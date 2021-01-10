@@ -164,7 +164,7 @@ float LinuxParser::CpuUtilization() {
       return CPU_Percentage;
     }
   }
-  return vector<string>{0};
+  return 0.0f;
 }
 
 // TODO: Read and return the total number of processes
