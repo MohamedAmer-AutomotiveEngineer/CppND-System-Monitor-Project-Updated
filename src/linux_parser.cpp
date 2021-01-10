@@ -132,6 +132,8 @@ vector<string> LinuxParser::CpuUtilization() {
   unsigned long int userTime, niceTime,   systemTime,   idleTime,   iowaitTime,   irqTime,   softirqTime,   stealTime,   guestTime,   guest_niceTime;
   float Idle = 0.0f, NonIdle = 0.0f, Total = 0.0f, totald = 0.0f, idled = 0.0f, CPU_Percentage = 0.0f;
   static float PrevIdle = 0.0f, PrevNonIdle = 0.0f, PrevTotal = 0.0f;
+  vector<string> cpu_utlization;
+  
   std::ifstream filestream(kProcDirectory + kStatFilename);
   if (filestream.is_open()) {
     std::getline(filestream, line);
@@ -155,10 +157,11 @@ vector<string> LinuxParser::CpuUtilization() {
       totald = Total - PrevTotal;
       idled = Idle - PrevIdle;
       CPU_Percentage = (totald - idled)/totald;
+      cpu_utlization.push_back(std::to_string(CPU_Percentage));
       PrevIdle = Idle;
       PrevNonIdle = NonIdle;
       PrevTotal = Total;
-      return std::to_string(CPU_Percentage);
+      return cpu_utlization;
     }
   }
   return 0;
