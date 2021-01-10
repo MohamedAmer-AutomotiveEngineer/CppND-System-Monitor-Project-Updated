@@ -14,7 +14,7 @@ void itoa(int num, char * str)
 // OUTPUT: HH:MM:SS
 // REMOVE: [[maybe_unused]] once you define the function
 string Format::ElapsedTime(long seconds) {
-    unsigned char hour = 0, minute = 0, second = 0;
+    unsigned char hour, minute, second;
     char str[3];
     string buffer;
     hour = seconds / 3600;
