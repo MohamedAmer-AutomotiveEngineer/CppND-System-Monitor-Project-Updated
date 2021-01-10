@@ -164,7 +164,7 @@ vector<string> LinuxParser::CpuUtilization() {
       return cpu_utlization;
     }
   }
-  return 0;
+  return vector<string>{0};
 }
 
 // TODO: Read and return the total number of processes
