@@ -125,7 +125,7 @@ long LinuxParser::ActiveJiffies() { return 0; }
 long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return CPU utilization
-vector<string> LinuxParser::CpuUtilization() {
+float LinuxParser::CpuUtilization() {
   string line;
   string key;
   string userTime_s,          niceTime_s, systemTime_s, idleTime_s, iowaitTime_s, irqTime_s, softirqTime_s, stealTime_s, guestTime_s, guest_niceTime_s;
@@ -157,11 +157,11 @@ vector<string> LinuxParser::CpuUtilization() {
       totald = Total - PrevTotal;
       idled = Idle - PrevIdle;
       CPU_Percentage = (totald - idled)/totald;
-      cpu_utlization.push_back(std::to_string(CPU_Percentage));
+      //cpu_utlization.push_back(std::to_string(CPU_Percentage));
       PrevIdle = Idle;
       PrevNonIdle = NonIdle;
       PrevTotal = Total;
-      return cpu_utlization;
+      return CPU_Percentage;
     }
   }
   return vector<string>{0};
