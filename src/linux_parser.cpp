@@ -92,7 +92,7 @@ float LinuxParser::MemoryUtilization() {
           break;
         }
       }
-    } //memFree / (memTotal - buffers)
+    }
     return (1.000 - (memFree / (memTotal - buffers)));
   }
   return 0;
@@ -125,7 +125,44 @@ long LinuxParser::ActiveJiffies() { return 0; }
 long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return CPU utilization
-vector<string> LinuxParser::CpuUtilization() { return {}; }
+vector<string> LinuxParser::CpuUtilization() {
+  string line;
+  string key;
+  string userTime_s,          niceTime_s, systemTime_s, idleTime_s, iowaitTime_s, irqTime_s, softirqTime_s, stealTime_s, guestTime_s, guest_niceTime_s;
+  unsigned long int userTime, niceTime,   systemTime,   idleTime,   iowaitTime,   irqTime,   softirqTime,   stealTime,   guestTime,   guest_niceTime;
+  float Idle = 0.0f, NonIdle = 0.0f, Total = 0.0f, totald = 0.0f, idled = 0.0f, CPU_Percentage = 0.0f;
+  static float PrevIdle = 0.0f, PrevNonIdle = 0.0f, PrevTotal = 0.0f;
+  std::ifstream filestream(kProcDirectory + kStatFilename);
+  if (filestream.is_open()) {
+    std::getline(filestream, line)
+    std::istringstream linestream(line);
+    linestream >> key >> userTime_s >> niceTime_s >> systemTime_s >> idleTime_s >> iowaitTime_s >> irqTime_s >> softirqTime_s >> stealTime_s >> guestTime_s >> guest_niceTime_s;
+    if (key == "cpu") {
+      userTime       = stol(userTime_s, nullptr, 10);
+      niceTime       = stol(niceTime_s, nullptr, 10);
+      systemTime     = stol(systemTime_s, nullptr, 10);
+      idleTime       = stol(idleTime_s, nullptr, 10);
+      iowaitTime     = stol(iowaitTime_s, nullptr, 10);
+      irqTime        = stol(irqTime_s, nullptr, 10);
+      softirqTime    = stol(softirqTime_s, nullptr, 10);
+      stealTime      = stol(stealTime_s, nullptr, 10);
+      guestTime      = stol(guestTime_s, nullptr, 10);
+      guest_niceTime = stol(guest_niceTime_s, nullptr, 10);
+
+      Idle = idleTime + iowaitTime;
+      NonIdle = userTime + niceTime + systemTime + irqTime + softirqTime + stealTime;
+      Total = Idle + NonIdle;
+      totald = Total - PrevTotal;
+      idled = Idle - PrevIdle;
+      CPU_Percentage = (totald - idled)/totald;
+      PrevIdle = Idle;
+      PrevNonIdle = NonIdle;
+      PrevTotal = Total;
+      return vector<string>std::to_string(CPU_Percentage);
+    }
+  }
+  return 0;
+}
 
 // TODO: Read and return the total number of processes
 int LinuxParser::TotalProcesses() {
