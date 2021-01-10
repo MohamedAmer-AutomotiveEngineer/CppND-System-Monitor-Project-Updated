@@ -5,8 +5,8 @@ using std::string;
 /* helper function to get correct printing of time data */
 void itoa(int num, char * str) 
 {
-    str[0] = num / 10;
-    str[1] = num % 10;
+    str[0] = (num / 10) + '0';
+    str[1] = (num % 10) + '0';
     str[2] = '\0'; // Append string terminator 
 }
 // TODO: Complete this helper function
