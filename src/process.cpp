@@ -20,7 +20,7 @@ float Process::CpuUtilization() { return 0; }
 // TODO: Return the command that generated this process
 string Process::Command() { 
     static int pid = 0;
-    pid++
+    pid++;
     return LinuxParser::Command((pid-1));
 }
 //string Process::Command() { return string(); }
