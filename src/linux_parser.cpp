@@ -212,11 +212,11 @@ string LinuxParser::Command(int pid) {
   string command;
   vector<int> process_Ids = Pids();
   std::cout << to_string(process_Ids[pid]) <<"\n";
-  std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
+  /*std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
   if (stream.is_open()) {
     std::getline(stream, command);
     return command;
-  }
+  }*/
   return "fail_trial";
 }
 
