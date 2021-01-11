@@ -109,7 +109,7 @@ long LinuxParser::UpTime() {
     linestream >> upTime >> idleTime;
   }
   return stol(upTime, nullptr, 10);
-  }
+}
 
 // TODO: Read and return the number of jiffies for the system
 long LinuxParser::Jiffies() { return 0; }
@@ -247,4 +247,15 @@ string LinuxParser::User(int pid) { return string(); }
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid) { return 0; }
+long LinuxParser::UpTime(int pid) {
+  string upTime, temp;
+  string line;
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+  if (stream.is_open()) {
+    std::getline(stream, line);
+    std::istringstream linestream(line);
+    linestream >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> 
+                  temp >> temp >> temp >> temp >> temp >> temp >> temp >> upTime;
+  }
+  return (long int)((float)stol(upTime, nullptr, 10) / sysconf(_SC_CLK_TCK));
+}
