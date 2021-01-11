@@ -21,7 +21,7 @@ float Process::CpuUtilization() { return 0; }
 string Process::Command() { 
     static int pid = 0;
     pid++;
-    return LinuxParser::Command((pid-1));
+    return LinuxParser::Command((pid));
 }
 //string Process::Command() { return string(); }
 // TODO: Return this process's memory utilization
