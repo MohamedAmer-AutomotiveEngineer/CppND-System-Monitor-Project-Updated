@@ -257,5 +257,5 @@ long LinuxParser::UpTime(int pid) {
     linestream >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> 
                   temp >> temp >> temp >> temp >> temp >> temp >> temp >> upTime;
   }
-  return (long int)((float)stol(upTime, nullptr, 10) / sysconf(_SC_CLK_TCK));
+  return (long int)((float)stol(upTime, nullptr, 10) / sysconf(_SC_CLK_TCK));    
 }
