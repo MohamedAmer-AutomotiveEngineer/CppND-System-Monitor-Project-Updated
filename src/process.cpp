@@ -19,9 +19,6 @@ float Process::CpuUtilization() { return 0; }
 
 // TODO: Return the command that generated this process
 string Process::Command() { 
-    /*static int processCounter = 0;
-    processCounter = processCounter % process_Ids.size();
-    vector<int> process_Ids = LinuxParser::Pids();*/
     return LinuxParser::Command(4395); 
 }
 
