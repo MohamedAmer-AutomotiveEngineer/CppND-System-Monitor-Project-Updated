@@ -208,10 +208,12 @@ int LinuxParser::RunningProcesses() {
 
 // TODO: Read and return the command associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Command(int pid) {
+string LinuxParser::Command(void) {
   string cmdline;
+  static int pid = 0;
+  pid++;
   vector<int> process_Ids = Pids();
-  std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
+  std::ifstream stream(kProcDirectory + to_string(process_Ids[pid - 1]) + kCmdlineFilename);
   if (stream.is_open()) {
     std::getline(stream, cmdline);
     return cmdline;
