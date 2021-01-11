@@ -18,7 +18,7 @@ class Process {
   Process(int pid) : pid_(pid) {}
   // TODO: Declare any necessary private members
  private:
- int pid_;
+ int pid_ = 0;
 };
 
 #endif
