@@ -257,7 +257,8 @@ long LinuxParser::UpTime(int pid) {
     std::istringstream linestream(line);
     linestream >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> 
                   temp >> temp >> temp >> temp >> temp >> temp >> temp >> upTime;
+    starttime = stol(upTime, nullptr, 10);
+    return (starttime / sysconf(_SC_CLK_TCK));
   }
-  starttime = stol(upTime, nullptr, 10);
-  return ((starttime / sysconf(_SC_CLK_TCK);
+  return 0;
 }
