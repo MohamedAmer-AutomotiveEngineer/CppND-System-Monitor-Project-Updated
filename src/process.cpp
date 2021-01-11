@@ -37,10 +37,3 @@ long int Process::UpTime() { return 0; }
 // TODO: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
 bool Process::operator<(Process const& a[[maybe_unused]]) const { return true; }
-
-Process::Process(void) { 
-    int Process::procIndex = 0;
-    vector<int> process_Ids = LinuxParser::Pids();
-    this->pid_ = process_Ids[procIndex];
-    procIndex++;
-}
