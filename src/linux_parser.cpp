@@ -276,7 +276,7 @@ string LinuxParser::User(int pid) {
       }
     }
   }
-  return value;
+  return "0";
 }
 
 // TODO: Read and return the uptime of a process
