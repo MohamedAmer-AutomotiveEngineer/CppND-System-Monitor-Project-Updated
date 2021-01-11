@@ -211,7 +211,7 @@ int LinuxParser::RunningProcesses() {
 string LinuxParser::Command(int pid) {
   string cmdline;
   vector<int> process_Ids = Pids();
-  std::ifstream stream(kProcDirectory + "4395" + kCmdlineFilename);
+  std::ifstream stream(kProcDirectory + to_string(4395) + kCmdlineFilename);
   if (stream.is_open()) {
     std::getline(stream, cmdline);
     return cmdline;
