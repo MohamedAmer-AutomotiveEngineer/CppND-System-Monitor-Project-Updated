@@ -18,7 +18,12 @@ int Process::Pid() { return 0; }
 float Process::CpuUtilization() { return 0; }
 
 // TODO: Return the command that generated this process
-string Process::Command() { return LinuxParser::Command(); }
+string Process::Command() { 
+    /*static int processCounter = 0;
+    processCounter = processCounter % process_Ids.size();
+    vector<int> process_Ids = LinuxParser::Pids();*/
+    return LinuxParser::Command(4395); 
+}
 
 // TODO: Return this process's memory utilization
 string Process::Ram() { return string(); }
