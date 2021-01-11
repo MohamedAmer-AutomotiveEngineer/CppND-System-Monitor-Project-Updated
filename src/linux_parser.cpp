@@ -212,12 +212,12 @@ string LinuxParser::Command(void) {
   string cmdline;
   static int processCounter = 0;
   vector<int> process_Ids = Pids();
-  std::ifstream stream(kProcDirectory + to_string(process_Ids[processCounter++]) + kCmdlineFilename);
+  processCounter = processCounter % process_Ids.size();
+  std::ifstream stream(kProcDirectory + to_string((process_Ids[processCounter++])) + kCmdlineFilename);
   if (stream.is_open()) {
     std::getline(stream, cmdline);
     return cmdline;
   }
-  return "Null";
 }
 
 // TODO: Read and return the memory used by a process
