@@ -220,7 +220,7 @@ string LinuxParser::Command(int pid) {
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Ram(int pid) {
-  /*string line;
+  string line;
   string key;
   string value;
   std::ifstream filestream(kProcDirectory + to_string(pid) + kStatusFilename);
@@ -233,7 +233,7 @@ string LinuxParser::Ram(int pid) {
         }
       }
     }
-  }*/
+  }
   return "Null";
 }
 
