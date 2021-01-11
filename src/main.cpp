@@ -2,8 +2,7 @@
 #include "system.h"
 
 int main() {
-  int Process::procIndex = 0;
   System system;
-  
+  int Process::procIndex = 0;
   NCursesDisplay::Display(system);
 }
