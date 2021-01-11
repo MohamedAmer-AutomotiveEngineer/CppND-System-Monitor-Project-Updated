@@ -210,7 +210,7 @@ int LinuxParser::RunningProcesses() {
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Command(int pid) {
   string command;
-  vector<int> process_Ids = LinuxParser::Pids();
+  vector<int> process_Ids = Pids();
   std::cout << to_string(process_Ids[pid]) <<"\n";
   /*std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
   if (stream.is_open()) {
