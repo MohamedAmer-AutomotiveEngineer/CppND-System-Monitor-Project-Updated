@@ -216,7 +216,7 @@ string LinuxParser::Command(int pid) {
   if (stream.is_open()) {
     std::getline(stream, command);
     return command;
-  }*/
+  }
   return "fail_trial";
 }
 
