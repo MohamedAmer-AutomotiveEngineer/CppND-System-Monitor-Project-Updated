@@ -215,7 +215,7 @@ string LinuxParser::Command(int pid) {
   if(!i)
   {
     std::cout << to_string(process_Ids[pid]) <<"\n";
-    i++
+    i++;
   }
   /*std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
   if (stream.is_open()) {
