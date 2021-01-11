@@ -234,7 +234,7 @@ string LinuxParser::Ram(int pid) {
       }
     }
   }
-  return string();
+  return "00";
 }
 
 // TODO: Read and return the user ID associated with a process
