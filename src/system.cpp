@@ -46,6 +46,6 @@ System::System() {
     vector<int> process_Ids = LinuxParser::Pids();
     for(unsigned char index = 0; index < process_Ids.size(); ++index)
     {
-        processes_.push_back(new Process(process_Ids[index]));
+        processes_.push_back(*(new Process(process_Ids[index])));
     }
 }
