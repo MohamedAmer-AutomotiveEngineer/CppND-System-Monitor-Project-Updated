@@ -39,6 +39,7 @@ long int Process::UpTime() { return 0; }
 bool Process::operator<(Process const& a[[maybe_unused]]) const { return true; }
 
 Process::Process(void) { 
+    int Process::procIndex = 0;
     vector<int> process_Ids = LinuxParser::Pids();
     this->pid_ = process_Ids[procIndex];
     procIndex++;

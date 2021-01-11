@@ -3,6 +3,5 @@
 
 int main() {
   System system;
-  int Process::procIndex = 0;
   NCursesDisplay::Display(system);
 }
