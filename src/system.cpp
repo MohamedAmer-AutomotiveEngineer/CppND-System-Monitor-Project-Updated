@@ -41,11 +41,11 @@ int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 // TODO: Return the number of seconds since the system started running
 long int System::UpTime() { return LinuxParser::UpTime(); }
 
+/* System class constructor */
 System::System() {
     vector<int> process_Ids = LinuxParser::Pids();
     for(unsigned char index = 0; index < process_Ids.size(); ++index)
     {
         processes_.push_back(new Process(process_Ids[index]));
     }
-
 }
