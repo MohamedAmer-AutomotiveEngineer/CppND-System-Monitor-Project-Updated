@@ -13,7 +13,6 @@ using std::set;
 using std::size_t;
 using std::string;
 using std::vector;
-//using namespace LinuxParser;
 
 // TODO: Return the system's CPU
 Processor& System::Cpu() 
@@ -41,3 +40,12 @@ int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO: Return the number of seconds since the system started running
 long int System::UpTime() { return LinuxParser::UpTime(); }
+
+System::System() {
+    vector<int> process_Ids = LinuxParser::Pids();
+    for(unsigned char index = 0; index < process_Ids.size(); ++index)
+    {
+        processes_.push_back(new Process(process_Ids[index]));
+    }
+
+}

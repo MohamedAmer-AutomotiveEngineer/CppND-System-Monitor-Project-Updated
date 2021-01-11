@@ -17,6 +17,7 @@ class System {
   int RunningProcesses();             // TODO: See src/system.cpp
   std::string Kernel();               // TODO: See src/system.cpp
   std::string OperatingSystem();      // TODO: See src/system.cpp
+  System(void);
 
   // TODO: Define any necessary private members
  private:
