@@ -214,7 +214,7 @@ string LinuxParser::Command(int pid) {
   std::ifstream stream(kProcDirectory + to_string(pids[pid]) + kVersionFilename);
   if (stream.is_open()) {
     std::getline(stream, command);
-    return line;
+    return command;
   }
   return "fail_trial";
 }
