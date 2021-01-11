@@ -38,7 +38,7 @@ long int Process::UpTime() { return 0; }
 // REMOVE: [[maybe_unused]] once you define the function
 bool Process::operator<(Process const& a[[maybe_unused]]) const { return true; }
 
-void Process::Process(void) { 
+Process::Process(void) { 
     vector<int> process_Ids = LinuxParser::Pids();
     this->pid_ = process_Ids[procIndex];
     procIndex++;
