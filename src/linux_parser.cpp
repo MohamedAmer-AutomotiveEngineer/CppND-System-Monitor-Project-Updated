@@ -229,7 +229,7 @@ string LinuxParser::Ram(int pid) {
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
         if (key == "VmSize:") {
-          return stol(value, nullptr, 10);
+          return value;
         }
       }
     }
