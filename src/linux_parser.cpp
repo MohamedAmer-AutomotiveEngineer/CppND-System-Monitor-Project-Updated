@@ -211,12 +211,8 @@ int LinuxParser::RunningProcesses() {
 string LinuxParser::Command(int pid) {
   string command;
   vector<int> process_Ids = Pids();
-  static int i = 0;
-  for(; i < process_Ids.size(); i++)
-  {
-    std::cout << process_Ids[pid] <<"\n";
-  }
-  /*std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
+  std::ifstream stream(kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename);
+  std::cout << kProcDirectory + to_string(process_Ids[pid]) + kCmdlineFilename <<"\n";
   if (stream.is_open()) {
     std::getline(stream, command);
     return command;
