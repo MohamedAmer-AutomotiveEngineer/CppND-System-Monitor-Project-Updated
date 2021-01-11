@@ -250,6 +250,7 @@ string LinuxParser::User(int pid) { return string(); }
 long LinuxParser::UpTime(int pid) {
   string upTime, temp;
   string line;
+  long int starttime;
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
@@ -257,5 +258,6 @@ long LinuxParser::UpTime(int pid) {
     linestream >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> temp >> 
                   temp >> temp >> temp >> temp >> temp >> temp >> temp >> upTime;
   }
-  return (long int)((float)stol(upTime, nullptr, 10) / sysconf(_SC_CLK_TCK));    
+  starttime = stol(upTime, nullptr, 10);
+  return ((starttime / sysconf(_SC_CLK_TCK);
 }
