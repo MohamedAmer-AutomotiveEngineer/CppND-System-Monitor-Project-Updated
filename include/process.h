@@ -17,7 +17,7 @@ class Process {
   bool operator<(Process const& a) const;  // TODO: See src/process.cpp
   // TODO: Declare any necessary private members
  private:
- static int pid_ = 0;
+ static int pid_;
 };
 
 #endif
