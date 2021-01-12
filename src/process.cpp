@@ -19,7 +19,7 @@ float Process::CpuUtilization() {
   long int starttime;
   unsigned char index = 0;
   unsigned long int totalTime, seconds;
-  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+  std::ifstream stream(LinuxParser::kProcDirectory + to_string(this->pid_) + LinuxParser::kStatFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
