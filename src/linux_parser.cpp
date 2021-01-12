@@ -150,7 +150,6 @@ float LinuxParser::CpuUtilization() {
       totald = Total - PrevTotal;
       idled = Idle - PrevIdle;
       CPU_Percentage = (totald - idled)/totald;
-      //cpu_utlization.push_back(std::to_string(CPU_Percentage));
       PrevIdle = Idle;
       PrevTotal = Total;
       return CPU_Percentage;
