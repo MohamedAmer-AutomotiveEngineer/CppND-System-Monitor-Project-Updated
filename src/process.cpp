@@ -11,24 +11,36 @@ using std::string;
 using std::to_string;
 using std::vector;
 
-// TODO: Return this process's ID
 int Process::Pid() { return this->pid_; }
 
-// TODO: Return this process's CPU utilization
-float Process::CpuUtilization() { return 0; }
+float Process::CpuUtilization() {
+  string uTime, sTime, cuTime, csTime, temp;
+  string line;
+  long int starttime;
+  unsigned char index = 0;
+  unsigned long int totalTime, seconds,
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+  if (stream.is_open()) {
+    std::getline(stream, line);
+    std::istringstream linestream(line);
+    while (++index < 14) { linestream >> temp; }
+    linestream >> uTime >> sTime >> cuTime >> csTime;
+    /* below formulas are from stackoverflow mentioned post in the project by david */
+    totalTime = stol(uTime, nullptr, 10) + stol(sTime, nullptr, 10);
+    totalTime = totalTime + stol(cuTime, nullptr, 10) + stol(csTime, nullptr, 10);
+    seconds = stol(uTime, nullptr, 10) - (stol(sTime, nullptr, 10) / sysconf(_SC_CLK_TCK));
+    return (((float)totalTime / (float)sysconf(_SC_CLK_TCK)) / (float)seconds);
+  }
+  return 0.0f;
+}
 
-// TODO: Return the command that generated this process
 string Process::Command() { return LinuxParser::Command(this->pid_); }
 
-// TODO: Return this process's memory utilization
 string Process::Ram() { return LinuxParser::Ram(this->pid_); }
 
-// TODO: Return the user (name) that generated this process
 string Process::User() { return LinuxParser::User(this->pid_); }
 
-// TODO: Return the age of this process (in seconds)
 long int Process::UpTime() { return LinuxParser::UpTime(this->pid_); }
 
 // TODO: Overload the "less than" comparison operator for Process objects
-// REMOVE: [[maybe_unused]] once you define the function
-bool Process::operator<(Process const& a[[maybe_unused]]) const { return true; }
+bool Process::operator<(Process const& a) const { return true; }
