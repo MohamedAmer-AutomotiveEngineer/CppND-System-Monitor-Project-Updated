@@ -16,7 +16,6 @@ int Process::Pid() { return this->pid_; }
 float Process::CpuUtilization() const {
   string uTime, sTime, cuTime, csTime, temp;
   string line;
-  long int starttime;
   unsigned char index = 0;
   unsigned long int totalTime, seconds;
   std::ifstream stream(LinuxParser::kProcDirectory + to_string(this->pid_) + LinuxParser::kStatFilename);

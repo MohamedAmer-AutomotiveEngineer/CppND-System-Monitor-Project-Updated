@@ -122,17 +122,17 @@ long LinuxParser::IdleJiffies() { return 0; }
 float LinuxParser::CpuUtilization() {
   string line;
   string key;
-  string userTime_s,          niceTime_s, systemTime_s, idleTime_s, iowaitTime_s, irqTime_s, softirqTime_s, stealTime_s, guestTime_s, guest_niceTime_s;
-  unsigned long int userTime, niceTime,   systemTime,   idleTime,   iowaitTime,   irqTime,   softirqTime,   stealTime,   guestTime,   guest_niceTime;
+  string userTime_s,          niceTime_s, systemTime_s, idleTime_s, iowaitTime_s, irqTime_s, softirqTime_s, stealTime_s;
+  unsigned long int userTime, niceTime,   systemTime,   idleTime,   iowaitTime,   irqTime,   softirqTime,   stealTime;
   float Idle = 0.0f, NonIdle = 0.0f, Total = 0.0f, totald = 0.0f, idled = 0.0f, CPU_Percentage = 0.0f;
-  static float PrevIdle = 0.0f, PrevNonIdle = 0.0f, PrevTotal = 0.0f;
+  static float PrevIdle = 0.0f, PrevTotal = 0.0f;
   vector<string> cpu_utlization;
   
   std::ifstream filestream(kProcDirectory + kStatFilename);
   if (filestream.is_open()) {
     std::getline(filestream, line);
     std::istringstream linestream(line);
-    linestream >> key >> userTime_s >> niceTime_s >> systemTime_s >> idleTime_s >> iowaitTime_s >> irqTime_s >> softirqTime_s >> stealTime_s >> guestTime_s >> guest_niceTime_s;
+    linestream >> key >> userTime_s >> niceTime_s >> systemTime_s >> idleTime_s >> iowaitTime_s >> irqTime_s >> softirqTime_s >> stealTime_s;
     if (key == "cpu") {
       userTime       = stol(userTime_s, nullptr, 10);
       niceTime       = stol(niceTime_s, nullptr, 10);
@@ -142,8 +142,6 @@ float LinuxParser::CpuUtilization() {
       irqTime        = stol(irqTime_s, nullptr, 10);
       softirqTime    = stol(softirqTime_s, nullptr, 10);
       stealTime      = stol(stealTime_s, nullptr, 10);
-      guestTime      = stol(guestTime_s, nullptr, 10);
-      guest_niceTime = stol(guest_niceTime_s, nullptr, 10);
 
       /* following formulas per htop */
       Idle = idleTime + iowaitTime;                                                    
@@ -154,7 +152,6 @@ float LinuxParser::CpuUtilization() {
       CPU_Percentage = (totald - idled)/totald;
       //cpu_utlization.push_back(std::to_string(CPU_Percentage));
       PrevIdle = Idle;
-      PrevNonIdle = NonIdle;
       PrevTotal = Total;
       return CPU_Percentage;
     }
@@ -205,6 +202,7 @@ string LinuxParser::Command(int pid) {
     std::getline(stream, cmdline);
     return cmdline;
   }
+  return " ";
 }
 
 string LinuxParser::Ram(int pid) {
