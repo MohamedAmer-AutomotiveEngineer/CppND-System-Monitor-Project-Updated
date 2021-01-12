@@ -13,7 +13,7 @@ using std::vector;
 
 int Process::Pid() { return this->pid_; }
 
-float Process::CpuUtilization() {
+float Process::CpuUtilization() const {
   string uTime, sTime, cuTime, csTime, temp;
   string line;
   long int starttime;
