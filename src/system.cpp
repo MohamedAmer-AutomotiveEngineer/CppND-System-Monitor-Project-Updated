@@ -39,4 +39,5 @@ System::System() {
         processes_.push_back(*(pProc));
         delete pProc;
     }
+    sort(processes_.begin(), processes_.end());
 }

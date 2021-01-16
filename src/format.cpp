@@ -1,32 +1,18 @@
 #include <string>
+#include <iomanip>
 #include "format.h"
+
 using std::string;
 
-/* helper function to get correct printing of time data */
-void itoa(int num, char * str) 
-{
-    str[0] = (num / 10) + '0';
-    str[1] = (num % 10) + '0';
-    str[2] = '\0'; // Append string terminator 
-}
-// TODO: Complete this helper function
 // INPUT: Long int measuring seconds
 // OUTPUT: HH:MM:SS
-// REMOVE: [[maybe_unused]] once you define the function
 string Format::ElapsedTime(long seconds) {
-    unsigned char hour, minute, second;
-    char str[3];
-    string buffer;
-    hour = seconds / 3600;
-    itoa(hour, str);
-    buffer.append(str);
-    buffer.push_back(':');
-    minute = (seconds - 3600*hour)/60;
-    itoa(minute, str);
-    buffer.append(str);
-    buffer.push_back(':');
-    second = (seconds - (3600*hour) - (60*minute));
-    itoa(second, str);
-    buffer.append(str);
-    return buffer;
-}
+  long h = seconds / 3600;
+  long m = (seconds % 3600) / 60;
+  long s = (seconds % 3600 % 60);
+  std::ostringstream elapsedTime;
+  elapsedTime << std::setw(2) << std::setfill('0') << h 
+              << ":" << std::setw(2) << std::setfill('0') << m
+              << ":" << std::setw(2) << std::setfill('0') << s;
+  return elapsedTime.str();
+ }

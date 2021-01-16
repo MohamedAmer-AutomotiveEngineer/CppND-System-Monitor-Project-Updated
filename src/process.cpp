@@ -6,6 +6,7 @@
 
 #include "process.h"
 #include "linux_parser.h"
+#include "system.h"
 
 using std::string;
 using std::to_string;
@@ -22,7 +23,7 @@ float Process::CpuUtilization() const {
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
-    while (++index < 14) { linestream >> temp; }
+    while (++index < 13) { linestream >> temp; }
     linestream >> uTime >> sTime >> cuTime >> csTime;
     /* below formulas are from stackoverflow mentioned post in the project by david */
     totalTime = stol(uTime, nullptr, 10) + stol(sTime, nullptr, 10);
@@ -39,6 +40,6 @@ string Process::Ram() { return LinuxParser::Ram(this->pid_); }
 
 string Process::User() { return LinuxParser::User(this->pid_); }
 
-long int Process::UpTime() { return LinuxParser::UpTime(this->pid_); }
+long int Process::UpTime() { return (System.UpTime() - LinuxParser::UpTime(this->pid_)); }
 
-bool Process::operator<(Process const& a) const{ return this->CpuUtilization() > a.CpuUtilization(); }
+bool Process::operator<(Process const& a) const{ return a.CpuUtilization() < this->CpuUtilization(); }
