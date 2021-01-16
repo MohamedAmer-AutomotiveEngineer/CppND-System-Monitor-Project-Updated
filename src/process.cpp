@@ -23,7 +23,7 @@ float Process::CpuUtilization() const {
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
-    while (++index < 13) { linestream >> temp; }
+    while (++index < 14) { linestream >> temp; }
     linestream >> uTime >> sTime >> cuTime >> csTime;
     /* below formulas are from stackoverflow mentioned post in the project by david */
     totalTime = stol(uTime, nullptr, 10) + stol(sTime, nullptr, 10);
