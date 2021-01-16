@@ -40,6 +40,6 @@ string Process::Ram() { return LinuxParser::Ram(this->pid_); }
 
 string Process::User() { return LinuxParser::User(this->pid_); }
 
-long int Process::UpTime() { return (System.UpTime() - LinuxParser::UpTime(this->pid_)); }
+long int Process::UpTime() { return (system.UpTime() - LinuxParser::UpTime(this->pid_)); }
 
 bool Process::operator<(Process const& a) const{ return a.CpuUtilization() < this->CpuUtilization(); }
