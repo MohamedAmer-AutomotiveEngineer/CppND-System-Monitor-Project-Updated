@@ -16,7 +16,18 @@ using std::vector;
 
 Processor& System::Cpu() { return cpu_; }
 
-vector<Process>& System::Processes() { return processes_; }
+vector<Process>& System::Processes() { 
+    vector<int> process_Ids = LinuxParser::Pids();
+    processes_.clear();
+    for(unsigned char index = 0; index < process_Ids.size(); ++index)
+    {
+        Process *pProc = new Process(process_Ids[index]);
+        processes_.push_back(*(pProc));
+        delete pProc;
+    }
+    sort(processes_.begin(), processes_.end());
+    return processes_; 
+}
 
 std::string System::Kernel() { return LinuxParser::Kernel(); }
 
@@ -29,15 +40,3 @@ int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
 int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 long int System::UpTime() { return LinuxParser::UpTime(); }
-
-/* System class constructor */
-System::System() {
-    vector<int> process_Ids = LinuxParser::Pids();
-    for(unsigned char index = 0; index < process_Ids.size(); ++index)
-    {
-        Process *pProc = new Process(process_Ids[index]);
-        processes_.push_back(*(pProc));
-        delete pProc;
-    }
-    sort(processes_.begin(), processes_.end());
-}
